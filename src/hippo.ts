@@ -10,7 +10,7 @@ async function run(): Promise<void> {
     if (osPlatform === 'windows') {
       osPlatform = 'win'
       archiveExtension = '.zip'
-    } else if (osPlatform === 'darwin') {
+    } else if (osPlatform === 'macos') {
       osPlatform = 'osx'
     }
 

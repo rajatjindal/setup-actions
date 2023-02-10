@@ -10271,7 +10271,7 @@ function getPlatform() {
     const platform = os_1.default.platform();
     switch (platform) {
         case 'darwin':
-            return 'darwin';
+            return 'macos';
         case 'freebsd':
             return 'freebsd';
         case 'linux':

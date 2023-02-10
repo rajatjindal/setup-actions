@@ -10299,7 +10299,7 @@ function run() {
                 osPlatform = 'win';
                 archiveExtension = '.zip';
             }
-            else if (osPlatform === 'darwin') {
+            else if (osPlatform === 'macos') {
                 osPlatform = 'osx';
             }
             const version = core.getInput('version') !== '' ? core.getInput('version') : 'v0.19.0';
@@ -10339,7 +10339,7 @@ function getPlatform() {
     const platform = os_1.default.platform();
     switch (platform) {
         case 'darwin':
-            return 'darwin';
+            return 'macos';
         case 'freebsd':
             return 'freebsd';
         case 'linux':
