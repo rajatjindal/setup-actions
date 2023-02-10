@@ -8,7 +8,7 @@ export function getPlatform(): string {
   const platform = os.platform()
   switch (platform) {
     case 'darwin':
-      return 'macos'
+      return 'darwin'
     case 'freebsd':
       return 'freebsd'
     case 'linux':

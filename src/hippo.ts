@@ -11,7 +11,7 @@ async function run(): Promise<void> {
       osPlatform = 'win'
       archiveExtension = '.zip'
     } else if (osPlatform === 'darwin') {
-      osPlatform = 'osx'
+      osPlatform = 'macos'
     }
 
     const version =
