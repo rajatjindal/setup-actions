@@ -1,0 +1,38 @@
+name: Setup bindle
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs: 
+  setup-bindle-windows:
+    runs-on: "windows-latest"
+    steps:
+      - name: setup bindle
+        uses: rajatjindal/setup-actions/bindle@main
+        with:
+          version: v0.8.0
+      - name: check version
+        run: |
+          bindle --version
+
+  setup-bindle-ubuntu:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: setup bindle
+        uses: rajatjindal/setup-actions/bindle@main
+        with:
+          version: v0.8.0
+      - name: check version
+        run: bindle --version
+
+  setup-bindle-macos:
+    runs-on: "macos-latest"
+    steps:
+      - name: setup bindle
+        uses: rajatjindal/setup-actions/bindle@main
+        with:
+          version: v0.8.0
+      - name: check version
+        run: bindle --version

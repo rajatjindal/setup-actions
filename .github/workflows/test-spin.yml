@@ -1,0 +1,38 @@
+name: Setup spin
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs: 
+  setup-spin-windows:
+    runs-on: "windows-latest"
+    steps:
+      - name: setup spin
+        uses: rajatjindal/setup-actions/spin@main
+        with:
+          version: v0.8.0
+      - name: check version
+        run: |
+          spin --version
+
+  setup-spin-ubuntu:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: setup spin
+        uses: rajatjindal/setup-actions/spin@main
+        with:
+          version: v0.8.0
+      - name: check version
+        run: spin --version
+
+  setup-spin-macos:
+    runs-on: "macos-latest"
+    steps:
+      - name: setup spin
+        uses: rajatjindal/setup-actions/spin@main
+        with:
+          version: v0.8.0
+      - name: check version
+        run: spin --version
