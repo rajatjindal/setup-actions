@@ -5,7 +5,6 @@
 import * as core from '@actions/core'
 import * as exec from '@actions/exec'
 import * as fs from 'fs-extra'
-import * as glob from '@actions/glob'
 import * as io from '@actions/io'
 import * as os from 'os'
 import * as path from 'path'
@@ -144,11 +143,6 @@ export class Downloader {
     await fs.exists(downloadPath)
     core.info(`copying ${downloadPath} to ${dest}`)
 
-    const patterns = ['**/wasmtime']
-    const globber = await glob.create(patterns.join('\n'))
-    const files = await globber.glob()
-
-    core.info(`files ${files}`)
     if (!fs.existsSync(dest)) {
       fs.moveSync(downloadPath, dest)
     }

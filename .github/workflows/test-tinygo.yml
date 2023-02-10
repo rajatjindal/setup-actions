@@ -27,7 +27,6 @@ jobs:
       - name: check version
         run: tinygo version
 
-
   setup-tinygo-macos:
     runs-on: "macos-latest"
     steps:
