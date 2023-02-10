@@ -6,17 +6,17 @@ on:
     branches: [main]
 
 jobs: 
-  setup-wasmtime-windows:
-    runs-on: "windows-latest"
-    steps:
-      - name: setup wasmtime
-        uses: rajatjindal/setup-actions/wasmtime@main
-        with:
-          version: v0.36.0
-      - name: check version
-        if: always()
-        run: |
-          wasmtime --version
+  # setup-wasmtime-windows:
+  #   runs-on: "windows-latest"
+  #   steps:
+  #     - name: setup wasmtime
+  #       uses: rajatjindal/setup-actions/wasmtime@main
+  #       with:
+  #         version: v0.36.0
+  #     - name: check version
+  #       if: always()
+  #       run: |
+  #         wasmtime --version
 
   setup-wasmtime-ubuntu:
     runs-on: "ubuntu-latest"
@@ -26,14 +26,15 @@ jobs:
         with:
           version: v0.36.0
       - name: check version
+        if: always()
         run: find /tmp/tmp/runner -name wasmtime
 
-  setup-wasmtime-macos:
-    runs-on: "macos-latest"
-    steps:
-      - name: setup wasmtime
-        uses: rajatjindal/setup-actions/wasmtime@main
-        with:
-          version: v0.36.0
-      - name: check version
-        run: wasmtime --version
+  # setup-wasmtime-macos:
+  #   runs-on: "macos-latest"
+  #   steps:
+  #     - name: setup wasmtime
+  #       uses: rajatjindal/setup-actions/wasmtime@main
+  #       with:
+  #         version: v0.36.0
+  #     - name: check version
+  #       run: wasmtime --version

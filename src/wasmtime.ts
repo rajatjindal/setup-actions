@@ -20,7 +20,7 @@ async function run(): Promise<void> {
 
     const downloadUrl = `https://github.com/bytecodealliance/wasmtime/releases/download/${version}/wasmtime-${version}-x86_64-${osPlatform}${archiveExtension}`;
     await downloader
-      .getConfig(`wasmtime${binaryExtension}`, downloadUrl, `wasmtime${binaryExtension}`)
+      .getConfig(`wasmtime${binaryExtension}`, downloadUrl, `wasmtime-${version}-x86_64-${osPlatform}/wasmtime${binaryExtension}`)
       .download()
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)

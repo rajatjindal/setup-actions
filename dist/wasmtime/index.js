@@ -12803,7 +12803,7 @@ function run() {
             }
             const downloadUrl = `https://github.com/bytecodealliance/wasmtime/releases/download/${version}/wasmtime-${version}-x86_64-${osPlatform}${archiveExtension}`;
             yield downloader
-                .getConfig(`wasmtime${binaryExtension}`, downloadUrl, `wasmtime${binaryExtension}`)
+                .getConfig(`wasmtime${binaryExtension}`, downloadUrl, `wasmtime-${version}-x86_64-${osPlatform}/wasmtime${binaryExtension}`)
                 .download();
         }
         catch (error) {
