@@ -10347,7 +10347,7 @@ function run() {
             const osArch = sys.getArch();
             const version = core.getInput('version') !== '' ? core.getInput('version') : 'v0.25.0';
             core.info(`setting up tinygo ${version} on ${osPlatform} - ${osArch}`);
-            let archiveExtension = osPlatform === 'windows' ? '.zip' : '.tar.xz';
+            let archiveExtension = osPlatform === 'windows' ? '.zip' : '.tar.gz';
             const downloadUrl = `https://github.com/tinygo-org/tinygo/releases/download/${version}/tinygo${version.replace('v', '')}.${osPlatform}-${osArch}${archiveExtension}`;
             yield downloader
                 .getConfig(`tinygo`, downloadUrl, `tinygo`)
