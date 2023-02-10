@@ -10249,11 +10249,12 @@ function run() {
             yield downloader
                 .getConfig(`spin${binaryExtension}`, downloadUrl, `spin${binaryExtension}`)
                 .download();
-            const plugins = core.getInput('plugins').split(',');
+            const plugins = core.getInput('plugins') !== '' ? core.getInput('plugins').split(',') : [];
             if (plugins.length > 0) {
                 yield exec.exec('spin', ['plugin', 'update']);
                 plugins.every(function (plugin) {
                     return __awaiter(this, void 0, void 0, function* () {
+                        core.info(`setting up spin plugin '${plugin}'`);
                         //TODO: use Promise.All
                         yield exec.exec('spin', ['plugin', 'install', plugin, '--yes']);
                     });
