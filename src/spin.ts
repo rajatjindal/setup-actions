@@ -24,10 +24,11 @@ async function run(): Promise<void> {
       .getConfig(`spin${binaryExtension}`, downloadUrl, `spin${binaryExtension}`)
       .download()
 
-    const plugins = core.getInput('plugins').split(',');
+    const plugins = core.getInput('plugins') !== '' ? core.getInput('plugins').split(',') : [];
     if (plugins.length > 0) {
       await exec.exec('spin', ['plugin', 'update'])
       plugins.every(async function (plugin) {
+        core.info(`setting up spin plugin '${plugin}'`);
         //TODO: use Promise.All
         await exec.exec('spin', ['plugin', 'install', plugin, '--yes'])
       })
