@@ -8,4 +8,4 @@ inputs:
     default: 'v0.8.0'
 runs:
   using: 'node16'
-  main: '../dist/spin/index.js'
+  main: 'dist/index.js'
