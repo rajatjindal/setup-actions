@@ -15,7 +15,7 @@ jobs:
           version: v0.8.0
       - name: check version
         run: |
-          bindle --version
+          bindle-server --version
 
   setup-bindle-ubuntu:
     runs-on: "ubuntu-latest"
@@ -25,7 +25,7 @@ jobs:
         with:
           version: v0.8.0
       - name: check version
-        run: bindle --version
+        run: bindle-server --version
 
   setup-bindle-macos:
     runs-on: "macos-latest"
@@ -35,4 +35,4 @@ jobs:
         with:
           version: v0.8.0
       - name: check version
-        run: bindle --version
+        run: bindle-server --version
