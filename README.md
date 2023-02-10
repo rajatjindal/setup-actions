@@ -8,23 +8,14 @@ The `rajatjindal/setup-actions` provide setting up multiple tools. Currently it 
 
 ## Actions
 
-:heavy_check_mark: [rajatjindal/setup-actions/spin](spin)
-
-Read more [here](spin)
-
+:white_check_mark: [rajatjindal/setup-actions/spin](spin)
 <br/>
-
-
-:heavy_check_mark: [rajatjindal/setup-actions/bindle](bindle)
-
-Read more [here](bindle)
-
+:white_check_mark: [rajatjindal/setup-actions/bindle](bindle)
 <br/>
-
-:heavy_check_mark: [rajatjindal/setup-actions/hippo](hippo)
-
-Read more [here](hippo)
-
+:white_check_mark: [rajatjindal/setup-actions/hippo](hippo)
+<br/>
+:white_check_mark: [bytecodealliance/setup-actions/wasmtime](wasmtime)
+<br/>
 ## Author Information
 
 The original code of this repository is based on
