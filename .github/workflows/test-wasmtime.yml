@@ -25,7 +25,7 @@ jobs:
         with:
           version: v0.36.0
       - name: check version
-        run: wasmtime --version
+        run: find /tmp/tmp/runner -name wasmtime
 
   setup-wasmtime-macos:
     runs-on: "macos-latest"
