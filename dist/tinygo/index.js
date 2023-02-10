@@ -10180,7 +10180,8 @@ class Downloader {
             const toolPath = binPath();
             yield io.mkdirP(toolPath);
             const dest = path.join(toolPath, this.name);
-            core.info(`copying to ${dest}`);
+            yield fs.exists(downloadPath);
+            core.info(`copying ${downloadPath} to ${dest}`);
             if (!fs.existsSync(dest)) {
                 fs.moveSync(downloadPath, dest);
             }
