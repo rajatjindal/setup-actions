@@ -14,7 +14,9 @@ The `rajatjindal/setup-actions` provide setting up multiple tools. Currently it 
 <br/>
 :white_check_mark: [rajatjindal/setup-actions/hippo](hippo)
 <br/>
-:white_check_mark: [bytecodealliance/setup-actions/wasmtime](wasmtime)
+:white_check_mark: [bytecodealliance/wasmtime](wasmtime)
+<br/>
+:white_check_mark: [tiny-go/tinygo](tinygo)
 <br/>
 ## Author Information
 
