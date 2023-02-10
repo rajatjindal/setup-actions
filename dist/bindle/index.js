@@ -10198,6 +10198,47 @@ class Downloader {
             return io.rmRF(tempDir);
         });
     }
+    downloadAsDir() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.validate();
+            const downloadURL = this.url;
+            core.info(`Downloading tool from ${downloadURL}`);
+            let downloadPath = null;
+            let archivePath = null;
+            const randomDir = (0, uuid_1.v4)();
+            const tempDir = path.join(os.tmpdir(), 'tmp', 'runner', randomDir);
+            core.info(`Creating tempdir ${tempDir}`);
+            yield io.mkdirP(tempDir);
+            downloadPath = yield tc.downloadTool(downloadURL);
+            switch (getArchiveType(downloadURL)) {
+                case ArchiveType.None:
+                    yield this.moveToPath(downloadPath);
+                    break;
+                case ArchiveType.TarGz:
+                    archivePath = yield tc.extractTar(downloadPath, tempDir);
+                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    break;
+                case ArchiveType.TarXz:
+                    archivePath = yield tc.extractTar(downloadPath, tempDir, 'x');
+                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    break;
+                case ArchiveType.Tgz:
+                    archivePath = yield tc.extractTar(downloadPath, tempDir);
+                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    break;
+                case ArchiveType.Zip:
+                    archivePath = yield tc.extractZip(downloadPath, tempDir);
+                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    break;
+                case ArchiveType.SevenZ:
+                    archivePath = yield tc.extract7z(downloadPath, tempDir);
+                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    break;
+            }
+            // Clean up the tempdir when done (this step is important for self-hosted runners)
+            return io.rmRF(tempDir);
+        });
+    }
     moveToPath(downloadPath) {
         return __awaiter(this, void 0, void 0, function* () {
             const toolPath = binPath();

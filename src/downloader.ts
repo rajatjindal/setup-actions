@@ -87,6 +87,55 @@ export class Downloader {
     return io.rmRF(tempDir)
   }
 
+
+  async downloadAsDir(): Promise<void> {
+    this.validate()
+    const downloadURL = this.url
+
+    core.info(`Downloading tool from ${downloadURL}`)
+    let downloadPath: string | null = null
+    let archivePath: string | null = null
+    const randomDir: string = uuidv4()
+    const tempDir = path.join(os.tmpdir(), 'tmp', 'runner', randomDir)
+    core.info(`Creating tempdir ${tempDir}`)
+    await io.mkdirP(tempDir)
+    downloadPath = await tc.downloadTool(downloadURL)
+
+    switch (getArchiveType(downloadURL)) {
+      case ArchiveType.None:
+        await this.moveToPath(downloadPath)
+        break
+
+      case ArchiveType.TarGz:
+        archivePath = await tc.extractTar(downloadPath, tempDir)
+        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        break
+
+      case ArchiveType.TarXz:
+        archivePath = await tc.extractTar(downloadPath, tempDir, 'x')
+        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        break
+
+      case ArchiveType.Tgz:
+        archivePath = await tc.extractTar(downloadPath, tempDir)
+        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        break
+
+      case ArchiveType.Zip:
+        archivePath = await tc.extractZip(downloadPath, tempDir)
+        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        break
+
+      case ArchiveType.SevenZ:
+        archivePath = await tc.extract7z(downloadPath, tempDir)
+        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        break
+    }
+
+    // Clean up the tempdir when done (this step is important for self-hosted runners)
+    return io.rmRF(tempDir)
+  }
+
   async moveToPath(downloadPath: string): Promise<void> {
     const toolPath = binPath()
     await io.mkdirP(toolPath)

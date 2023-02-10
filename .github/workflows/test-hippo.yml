@@ -1,0 +1,40 @@
+name: Setup hippo
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs: 
+  setup-hippo-windows:
+    runs-on: "windows-latest"
+    steps:
+      - name: setup hippo
+        uses: rajatjindal/setup-actions/hippo@main
+        with:
+          version: v0.19.0
+      - name: check version
+        run: |
+          Hippo.Web.exe --version
+
+  # setup-hippo-ubuntu:
+  #   runs-on: "ubuntu-latest"
+  #   steps:
+  #     - name: setup hippo
+  #       uses: rajatjindal/setup-actions/hippo@main
+  #       with:
+  #         version: v0.8.0
+  #         plugins: 'js2wasm'
+  #     - name: check version
+  #       run: hippo --version
+
+
+  # setup-hippo-macos:
+  #   runs-on: "macos-latest"
+  #   steps:
+  #     - name: setup hippo
+  #       uses: rajatjindal/setup-actions/hippo@main
+  #       with:
+  #         version: v0.8.0
+  #     - name: check version
+  #       run: hippo --version

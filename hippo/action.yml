@@ -1,0 +1,11 @@
+name: 'Rajat Jindal'
+description: 'downloads and add deislabs/hippo to your PATH'
+author: 'Rajat Jindal'
+inputs:
+  version:
+    required: false
+    description: 'version of hippo to setup'
+    default: 'v0.19.0'
+runs:
+  using: 'node16'
+  main: '../dist/hippo/index.js'
