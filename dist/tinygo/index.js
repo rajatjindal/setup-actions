@@ -10336,14 +10336,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const downloader = __importStar(__nccwpck_require__(9099));
 const sys = __importStar(__nccwpck_require__(4300));
-const os_1 = __importDefault(__nccwpck_require__(2087));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -10352,7 +10348,7 @@ function run() {
             const version = core.getInput('version') !== '' ? core.getInput('version') : 'v0.25.0';
             core.info(`setting up tinygo ${version} on ${osPlatform} - ${osArch}`);
             let archiveExtension = osPlatform === 'windows' ? '.zip' : '.tar.xz';
-            const downloadUrl = `https://github.com/tinygo-org/tinygo/releases/download/${version}/tinygo${version.replace('v', '')}.${osPlatform}-${os_1.default.arch()}${archiveExtension}`;
+            const downloadUrl = `https://github.com/tinygo-org/tinygo/releases/download/${version}/tinygo${version.replace('v', '')}.${osPlatform}-${osArch}${archiveExtension}`;
             yield downloader
                 .getConfig(`tinygo`, downloadUrl, `tinygo`)
                 .downloadAsDir();

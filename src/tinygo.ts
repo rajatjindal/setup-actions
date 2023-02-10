@@ -14,7 +14,7 @@ async function run(): Promise<void> {
 
     let archiveExtension = osPlatform === 'windows' ? '.zip' : '.tar.xz';
 
-    const downloadUrl = `https://github.com/tinygo-org/tinygo/releases/download/${version}/tinygo${version.replace('v', '')}.${osPlatform}-${os.arch()}${archiveExtension}`;
+    const downloadUrl = `https://github.com/tinygo-org/tinygo/releases/download/${version}/tinygo${version.replace('v', '')}.${osPlatform}-${osArch}${archiveExtension}`;
     await downloader
       .getConfig(`tinygo`, downloadUrl, `tinygo`)
       .downloadAsDir()
