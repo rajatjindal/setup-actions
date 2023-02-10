@@ -103,32 +103,32 @@ export class Downloader {
 
     switch (getArchiveType(downloadURL)) {
       case ArchiveType.None:
-        await this.moveToPath(downloadPath)
+        await this.moveDirToPath(downloadPath)
         break
 
       case ArchiveType.TarGz:
         archivePath = await tc.extractTar(downloadPath, tempDir)
-        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        await this.moveDirToPath(path.join(archivePath, this.pathInArchive))
         break
 
       case ArchiveType.TarXz:
         archivePath = await tc.extractTar(downloadPath, tempDir, 'x')
-        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        await this.moveDirToPath(path.join(archivePath, this.pathInArchive))
         break
 
       case ArchiveType.Tgz:
         archivePath = await tc.extractTar(downloadPath, tempDir)
-        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        await this.moveDirToPath(path.join(archivePath, this.pathInArchive))
         break
 
       case ArchiveType.Zip:
         archivePath = await tc.extractZip(downloadPath, tempDir)
-        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        await this.moveDirToPath(path.join(archivePath, this.pathInArchive))
         break
 
       case ArchiveType.SevenZ:
         archivePath = await tc.extract7z(downloadPath, tempDir)
-        await this.moveToPath(path.join(archivePath, this.pathInArchive))
+        await this.moveDirToPath(path.join(archivePath, this.pathInArchive))
         break
     }
 
@@ -151,6 +151,19 @@ export class Downloader {
     }
 
     core.addPath(toolPath)
+  }
+
+  async moveDirToPath(downloadPath: string): Promise<void> {
+    const toolPath = binFolderPath()
+    await io.mkdirP(toolPath)
+    const dest = path.join(toolPath, this.name)
+    core.info(`copying to ${dest}`)
+
+    if (!fs.existsSync(dest)) {
+      fs.moveSync(downloadPath, dest)
+    }
+
+    core.addPath(dest)
   }
 
   validate(): void {
@@ -178,7 +191,7 @@ export function getArchiveType(downloadURL: string): ArchiveType {
   return ArchiveType.None
 }
 
-export function binPath(): string {
+export function binFolderPath(): string {
   let baseLocation: string
   if (process.platform === 'win32') {
     // On windows use the USERPROFILE env variable
@@ -191,5 +204,9 @@ export function binPath(): string {
     }
   }
 
-  return path.join(baseLocation, os.userInfo().username, 'downloader', 'bin')
+  return path.join(baseLocation, os.userInfo().username, 'downloader')
+}
+
+export function binPath(): string {
+  return path.join(binFolderPath(), 'bin')
 }
