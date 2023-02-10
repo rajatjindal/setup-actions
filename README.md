@@ -32,4 +32,3 @@ The original code of this repository is based on
 - [endocrimes/setup-nomad](https://github.com/endocrimes/setup-nomad)
 - [engineerd/configurator](https://github.com/engineerd/configurator)
 
-# setup-actions
