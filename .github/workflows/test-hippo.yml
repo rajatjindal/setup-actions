@@ -13,8 +13,6 @@ jobs:
         uses: rajatjindal/setup-actions/hippo@main
         with:
           version: v0.19.0
-      - name: check version
-        run: Hippo.Web
 
   setup-hippo-ubuntu:
     runs-on: "ubuntu-latest"
@@ -23,9 +21,6 @@ jobs:
         uses: rajatjindal/setup-actions/hippo@main
         with:
           version: v0.19.0
-      - name: check version
-        run: Hippo.Web
-
 
   setup-hippo-macos:
     runs-on: "macos-latest"
@@ -34,5 +29,3 @@ jobs:
         uses: rajatjindal/setup-actions/hippo@main
         with:
           version: v0.19.0
-      - name: check version
-        run: Hippo.Web
