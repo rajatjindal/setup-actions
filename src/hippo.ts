@@ -19,15 +19,11 @@ async function run(): Promise<void> {
     if (osPlatform === 'windows') {
       archiveExtension = '.zip'
     }
+    const folderName = `${osPlatform}-x64`
 
-
-    // https://github.com/deislabs/hippo/releases/download/${version}/hippo-server-${osPlatform}-x64.tar.gz
-    // https://github.com/deislabs/hippo/releases/download/v0.19.0/hippo-server-osx-x64.tar.gz
-    // https://github.com/deislabs/hippo/releases/download/v0.19.0/hippo-server-win-x64.zip
-
-    const downloadUrl = `https://github.com/deislabs/hippo/releases/download/v0.19.0/hippo-server-win-x64.zip`;
+    const downloadUrl = `https://github.com/deislabs/hippo/releases/download/${version}/hippo-server-${folderName}${archiveExtension}`;
     await downloader
-      .getConfig(`win-x64`, downloadUrl, `win-x64`)
+      .getConfig(folderName, downloadUrl, folderName)
       .downloadAsDir()
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
