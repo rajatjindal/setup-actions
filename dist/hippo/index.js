@@ -10291,19 +10291,17 @@ const sys = __importStar(__nccwpck_require__(4300));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            let archiveExtension = '.tar.gz';
             let osPlatform = sys.getPlatform();
             if (osPlatform === 'windows') {
                 osPlatform = 'win';
+                archiveExtension = '.zip';
             }
             else if (osPlatform === 'darwin') {
                 osPlatform = 'osx';
             }
             const version = core.getInput('version') !== '' ? core.getInput('version') : 'v0.19.0';
             core.info(`setting up hippo ${version} on ${osPlatform}`);
-            let archiveExtension = '.tar.gz';
-            if (osPlatform === 'windows') {
-                archiveExtension = '.zip';
-            }
             const folderName = `${osPlatform}-x64`;
             const downloadUrl = `https://github.com/deislabs/hippo/releases/download/${version}/hippo-server-${folderName}${archiveExtension}`;
             yield downloader
