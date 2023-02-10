@@ -5,7 +5,7 @@ import os from 'os'
 
 async function run(): Promise<void> {
   try {
-    const osPlatform = sys.getPlatform()
+    const osPlatform = sys.getPlatform() === 'macos' ? 'darwin' : sys.getPlatform()
     const osArch = sys.getArch()
 
     const version =
