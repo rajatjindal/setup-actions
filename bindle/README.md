@@ -1,53 +1,42 @@
-# GitHub Action: setup-spin
+# GitHub Action: rajatjindal/setup-actions/bindle
 
-The `rajatjindal/setup-spin` Action sets up the `spin` CLI in your GitHub Actions workflow by adding the binary to `PATH`.
+The `rajatjindal/setup-actions/bindle` Action sets up the `bindle` CLI in your GitHub Actions workflow by adding the binary to `PATH`.
 
-## Usage
+## Setting up `bindle` 
 
-1.) Create a GitHub Actions Workflow file (e.g.: `.github/workflows/spin.yml`):
+1.) Create a GitHub Actions Workflow file (e.g.: `.github/workflows/bindle.yml`):
 
 ```yaml
-name: spin
+name: bindle
 
 on:
   - push
 
 jobs:
-  spin:
+  bindle:
     runs-on: ubuntu-latest
-    name: Setup spin
+    name: Setup bindle
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup `spin`
-        uses: rajatjindal/setup-spin@v1
+      - name: Setup `bindle`
+        uses: rajatjindal/setup-actions/bindle@main
         id: setup
         with:
           version: "v0.8.0"
 
-      - name: Run `spin version`
+      - name: Run `bindle version`
         id: info
-        run: "spin --version"
+        run: "bindle-server --version"
 ```
 
-## Inputs
+### Inputs
 
 This section contains a list of all inputs that may be set for this Action.
 
-- `version` - (required) The version of `spin` to install. Supports [semver](https://www.npmjs.com/package/semver) versioning. Defaults to `v0.8.0`.
+- `version` - (required) The version of `bindle` to install. Supports [semver](https://www.npmjs.com/package/semver) versioning. Defaults to `v0.8.0`.
 
-## Outputs
+### Outputs
 
 This section contains a list of all outputs that can be consumed from this Action.
 
-- `version` -  The version of `spin` that was installed.
+- `version` -  The version of `bindle` that was installed.
 
-## Author Information
-
-The original code of this repository is based on
-
-- [endocrimes/setup-nomad](https://github.com/endocrimes/setup-nomad)
-- [engineerd/configurator](https://github.com/engineerd/configurator)
-
-# setup-actions

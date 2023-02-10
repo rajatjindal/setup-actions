@@ -1,53 +1,39 @@
-# GitHub Action: setup-spin
+# GitHub Action: rajatjindal/setup-actions/hippo
 
-The `rajatjindal/setup-spin` Action sets up the `spin` CLI in your GitHub Actions workflow by adding the binary to `PATH`.
+The `rajatjindal/setup-actions/hippo` Action sets up the `Hippo.Web` server in your GitHub Actions workflow by adding the binary to `PATH`.
 
-## Usage
+## Setting up `hippo` 
 
-1.) Create a GitHub Actions Workflow file (e.g.: `.github/workflows/spin.yml`):
+1.) Create a GitHub Actions Workflow file (e.g.: `.github/workflows/hippo.yml`):
 
 ```yaml
-name: spin
+name: hippo
 
 on:
   - push
 
 jobs:
-  spin:
+  hippo:
     runs-on: ubuntu-latest
-    name: Setup spin
+    name: Setup hippo
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup `spin`
-        uses: rajatjindal/setup-spin@v1
+      - name: Setup `hippo`
+        uses: rajatjindal/setup-actions/hippo@main
         id: setup
         with:
-          version: "v0.8.0"
+          version: "v0.19.0"
 
-      - name: Run `spin version`
-        id: info
-        run: "spin --version"
 ```
 
-## Inputs
+### Inputs
 
 This section contains a list of all inputs that may be set for this Action.
 
-- `version` - (required) The version of `spin` to install. Supports [semver](https://www.npmjs.com/package/semver) versioning. Defaults to `v0.8.0`.
+- `version` - (required) The version of `hippo` to install. Supports [semver](https://www.npmjs.com/package/semver) versioning. Defaults to `v0.8.0`.
 
-## Outputs
+### Outputs
 
 This section contains a list of all outputs that can be consumed from this Action.
 
-- `version` -  The version of `spin` that was installed.
+- `version` -  The version of `hippo` that was installed.
 
-## Author Information
-
-The original code of this repository is based on
-
-- [endocrimes/setup-nomad](https://github.com/endocrimes/setup-nomad)
-- [engineerd/configurator](https://github.com/engineerd/configurator)
-
-# setup-actions
