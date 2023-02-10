@@ -140,7 +140,8 @@ export class Downloader {
     const toolPath = binPath()
     await io.mkdirP(toolPath)
     const dest = path.join(toolPath, this.name)
-    core.info(`copying to ${dest}`)
+    await fs.exists(downloadPath)
+    core.info(`copying ${downloadPath} to ${dest}`)
 
     if (!fs.existsSync(dest)) {
       fs.moveSync(downloadPath, dest)
