@@ -1,6 +1,6 @@
 {
   "name": "setup-spin",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "This action setup fermyon/spin",
   "main": "lib/main.js",

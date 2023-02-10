@@ -18,7 +18,7 @@ jobs:
     name: Setup spin
     steps:
       - name: Setup `spin`
-        uses: rajatjindal/setup-actions/spin@main
+        uses: rajatjindal/setup-actions/spin@v0.0.1
         id: setup
         with:
           version: "v0.8.0"
@@ -32,7 +32,8 @@ jobs:
 
 This section contains a list of all inputs that may be set for this Action.
 
-- `version` - (required) The version of `spin` to install. Supports [semver](https://www.npmjs.com/package/semver) versioning. Defaults to `v0.8.0`.
+- `version` - (optional) The version of `spin` to install. Supports [semver](https://www.npmjs.com/package/semver) versioning. Defaults to `v0.8.0`.
+- `plugins` - (optional) The comma separated list of `spin plugins` to install.
 
 ### Outputs
 

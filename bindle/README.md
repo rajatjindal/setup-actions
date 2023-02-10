@@ -18,7 +18,7 @@ jobs:
     name: Setup bindle
     steps:
       - name: Setup `bindle`
-        uses: rajatjindal/setup-actions/bindle@main
+        uses: rajatjindal/setup-actions/bindle@v0.0.1
         id: setup
         with:
           version: "v0.8.0"

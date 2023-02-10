@@ -1,42 +1,42 @@
-# GitHub Action: rajatjindal/setup-actions/bindle
+# GitHub Action: rajatjindal/setup-actions/wasmtime
 
-The `rajatjindal/setup-actions/bindle` Action sets up the `bindle` CLI in your GitHub Actions workflow by adding the binary to `PATH`.
+The `rajatjindal/setup-actions/wasmtime` Action sets up the `wasmtime` CLI in your GitHub Actions workflow by adding the binary to `PATH`.
 
-## Setting up `bindle` 
+## Setting up `wasmtime` 
 
-1.) Create a GitHub Actions Workflow file (e.g.: `.github/workflows/bindle.yml`):
+1.) Create a GitHub Actions Workflow file (e.g.: `.github/workflows/wasmtime.yml`):
 
 ```yaml
-name: bindle
+name: wasmtime
 
 on:
   - push
 
 jobs:
-  bindle:
+  wasmtime:
     runs-on: ubuntu-latest
-    name: Setup bindle
+    name: Setup wasmtime
     steps:
-      - name: Setup `bindle`
-        uses: rajatjindal/setup-actions/bindle@main
+      - name: Setup `wasmtime`
+        uses: rajatjindal/setup-actions/wasmtime@v0.0.1
         id: setup
         with:
-          version: "v0.8.0"
+          version: "v0.36.0"
 
-      - name: Run `bindle version`
+      - name: Run `wasmtime version`
         id: info
-        run: "bindle-server --version"
+        run: "wasmtime --version"
 ```
 
 ### Inputs
 
 This section contains a list of all inputs that may be set for this Action.
 
-- `version` - (required) The version of `bindle` to install. Supports [semver](https://www.npmjs.com/package/semver) versioning. Defaults to `v0.8.0`.
+- `version` - (required) The version of `wasmtime` to install. Supports [semver](https://www.npmjs.com/package/semver) versioning. Defaults to `v0.36.0`.
 
 ### Outputs
 
 This section contains a list of all outputs that can be consumed from this Action.
 
-- `version` -  The version of `bindle` that was installed.
+- `version` -  The version of `wasmtime` that was installed.
 

@@ -1,4 +1,4 @@
-# GitHub Action: rajatjindal/setup-actions/bindle
+# GitHub Action: rajatjindal/setup-actions/tinygo
 
 The `rajatjindal/setup-actions/tinygo` Action sets up the `tinygo` CLI in your GitHub Actions workflow by adding the binary to `PATH`.
 
@@ -18,7 +18,7 @@ jobs:
     name: Setup tinygo
     steps:
       - name: Setup `tinygo`
-        uses: rajatjindal/setup-actions/tinygo@main
+        uses: rajatjindal/setup-actions/tinygo@v0.0.1
         id: setup
         with:
           version: "v0.26.0"

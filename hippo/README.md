@@ -18,7 +18,7 @@ jobs:
     name: Setup hippo
     steps:
       - name: Setup `hippo`
-        uses: rajatjindal/setup-actions/hippo@main
+        uses: rajatjindal/setup-actions/hippo@v0.0.1
         id: setup
         with:
           version: "v0.19.0"
