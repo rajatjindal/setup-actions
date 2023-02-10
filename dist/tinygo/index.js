@@ -10349,10 +10349,10 @@ function run() {
         try {
             const osPlatform = sys.getPlatform();
             const osArch = sys.getArch();
-            const version = core.getInput('version') !== '' ? core.getInput('version') : '0.25.0';
+            const version = core.getInput('version') !== '' ? core.getInput('version') : 'v0.25.0';
             core.info(`setting up tinygo ${version} on ${osPlatform} - ${osArch}`);
             let archiveExtension = osPlatform === 'windows' ? '.zip' : '.tar.xz';
-            const downloadUrl = `https://github.com/tinygo-org/tinygo/releases/download/v${version}/tinygo${version}.${osPlatform}-${os_1.default.arch()}${archiveExtension}`;
+            const downloadUrl = `https://github.com/tinygo-org/tinygo/releases/download/${version}/tinygo${version.replace('v', '')}.${osPlatform}-${os_1.default.arch()}${archiveExtension}`;
             yield downloader
                 .getConfig(`tinygo`, downloadUrl, `tinygo`)
                 .downloadAsDir();
