@@ -10345,7 +10345,7 @@ const sys = __importStar(__nccwpck_require__(4300));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const osPlatform = sys.getPlatform();
+            const osPlatform = sys.getPlatform() === 'macos' ? 'darwin' : sys.getPlatform();
             const osArch = sys.getArch();
             const version = core.getInput('version') !== '' ? core.getInput('version') : 'v0.25.0';
             core.info(`setting up tinygo ${version} on ${osPlatform} - ${osArch}`);
