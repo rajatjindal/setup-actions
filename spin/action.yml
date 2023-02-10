@@ -6,6 +6,9 @@ inputs:
     required: false
     description: 'version of spin to setup'
     default: 'v0.8.0'
+  plugins:
+    required: false
+    description: 'setup provided spin plugins. comma separated list'
 runs:
   using: 'node16'
   main: '../dist/spin/index.js'

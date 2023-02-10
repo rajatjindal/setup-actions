@@ -1,4 +1,5 @@
 import * as core from '@actions/core'
+import * as exec from '@actions/exec'
 import * as downloader from './downloader'
 import * as sys from './system'
 
@@ -22,6 +23,15 @@ async function run(): Promise<void> {
     await downloader
       .getConfig(`spin${binaryExtension}`, downloadUrl, `spin${binaryExtension}`)
       .download()
+
+    const plugins = core.getInput('plugins').split(',');
+    if (plugins.length > 0) {
+      await exec.exec('spin', ['plugin', 'update'])
+      plugins.every(async function (plugin) {
+        //TODO: use Promise.All
+        await exec.exec('spin', ['plugin', 'install', plugin, '--yes'])
+      })
+    }
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }

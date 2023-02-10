@@ -10229,6 +10229,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
+const exec = __importStar(__nccwpck_require__(1514));
 const downloader = __importStar(__nccwpck_require__(9099));
 const sys = __importStar(__nccwpck_require__(4300));
 function run() {
@@ -10248,6 +10249,16 @@ function run() {
             yield downloader
                 .getConfig(`spin${binaryExtension}`, downloadUrl, `spin${binaryExtension}`)
                 .download();
+            const plugins = core.getInput('plugins').split(',');
+            if (plugins.length > 0) {
+                yield exec.exec('spin', ['plugin', 'update']);
+                plugins.every(function (plugin) {
+                    return __awaiter(this, void 0, void 0, function* () {
+                        //TODO: use Promise.All
+                        yield exec.exec('spin', ['plugin', 'install', plugin, '--yes']);
+                    });
+                });
+            }
         }
         catch (error) {
             if (error instanceof Error)
