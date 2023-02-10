@@ -24,8 +24,10 @@ jobs:
         uses: rajatjindal/setup-actions/spin@main
         with:
           version: v0.8.0
+          plugins: 'js2wasm'
       - name: check version
         run: spin --version
+
 
   setup-spin-macos:
     runs-on: "macos-latest"
