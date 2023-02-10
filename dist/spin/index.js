@@ -10065,7 +10065,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.binPath = exports.getArchiveType = exports.Downloader = exports.getConfig = exports.ArchiveType = void 0;
+exports.binPath = exports.binFolderPath = exports.getArchiveType = exports.Downloader = exports.getConfig = exports.ArchiveType = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const exec = __importStar(__nccwpck_require__(1514));
 const fs = __importStar(__nccwpck_require__(5630));
@@ -10148,27 +10148,27 @@ class Downloader {
             downloadPath = yield tc.downloadTool(downloadURL);
             switch (getArchiveType(downloadURL)) {
                 case ArchiveType.None:
-                    yield this.moveToPath(downloadPath);
+                    yield this.moveDirToPath(downloadPath);
                     break;
                 case ArchiveType.TarGz:
                     archivePath = yield tc.extractTar(downloadPath, tempDir);
-                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    yield this.moveDirToPath(path.join(archivePath, this.pathInArchive));
                     break;
                 case ArchiveType.TarXz:
                     archivePath = yield tc.extractTar(downloadPath, tempDir, 'x');
-                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    yield this.moveDirToPath(path.join(archivePath, this.pathInArchive));
                     break;
                 case ArchiveType.Tgz:
                     archivePath = yield tc.extractTar(downloadPath, tempDir);
-                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    yield this.moveDirToPath(path.join(archivePath, this.pathInArchive));
                     break;
                 case ArchiveType.Zip:
                     archivePath = yield tc.extractZip(downloadPath, tempDir);
-                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    yield this.moveDirToPath(path.join(archivePath, this.pathInArchive));
                     break;
                 case ArchiveType.SevenZ:
                     archivePath = yield tc.extract7z(downloadPath, tempDir);
-                    yield this.moveToPath(path.join(archivePath, this.pathInArchive));
+                    yield this.moveDirToPath(path.join(archivePath, this.pathInArchive));
                     break;
             }
             // Clean up the tempdir when done (this step is important for self-hosted runners)
@@ -10188,6 +10188,18 @@ class Downloader {
                 yield exec.exec('chmod', ['+x', path.join(toolPath, this.name)]);
             }
             core.addPath(toolPath);
+        });
+    }
+    moveDirToPath(downloadPath) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const toolPath = binFolderPath();
+            yield io.mkdirP(toolPath);
+            const dest = path.join(toolPath, this.name);
+            core.info(`copying to ${dest}`);
+            if (!fs.existsSync(dest)) {
+                fs.moveSync(downloadPath, dest);
+            }
+            core.addPath(dest);
         });
     }
     validate() {
@@ -10214,7 +10226,7 @@ function getArchiveType(downloadURL) {
     return ArchiveType.None;
 }
 exports.getArchiveType = getArchiveType;
-function binPath() {
+function binFolderPath() {
     let baseLocation;
     if (process.platform === 'win32') {
         // On windows use the USERPROFILE env variable
@@ -10228,7 +10240,11 @@ function binPath() {
             baseLocation = '/home';
         }
     }
-    return path.join(baseLocation, os.userInfo().username, 'downloader', 'bin');
+    return path.join(baseLocation, os.userInfo().username, 'downloader');
+}
+exports.binFolderPath = binFolderPath;
+function binPath() {
+    return path.join(binFolderPath(), 'bin');
 }
 exports.binPath = binPath;
 
