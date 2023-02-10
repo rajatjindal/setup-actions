@@ -164,6 +164,7 @@ export class Downloader {
     }
 
     core.addPath(dest)
+    core.addPath(path.join(dest, "bin"))
   }
 
   validate(): void {

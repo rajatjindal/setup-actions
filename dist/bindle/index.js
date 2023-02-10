@@ -10264,6 +10264,7 @@ class Downloader {
                 fs.moveSync(downloadPath, dest);
             }
             core.addPath(dest);
+            core.addPath(path.join(dest, "bin"));
         });
     }
     validate() {
