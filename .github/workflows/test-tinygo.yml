@@ -1,0 +1,39 @@
+name: Setup tinygo
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs: 
+  setup-tinygo-windows:
+    runs-on: "windows-latest"
+    steps:
+      - name: setup tinygo
+        uses: rajatjindal/setup-actions/tinygo@main
+        with:
+          version: v0.25.0
+      - name: check version
+        run: |
+          tinygo --version
+
+  setup-tinygo-ubuntu:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: setup tinygo
+        uses: rajatjindal/setup-actions/tinygo@main
+        with:
+          version: v0.25.0
+      - name: check version
+        run: tinygo --version
+
+
+  setup-tinygo-macos:
+    runs-on: "macos-latest"
+    steps:
+      - name: setup tinygo
+        uses: rajatjindal/setup-actions/tinygo@main
+        with:
+          version: v0.25.0
+      - name: check version
+        run: tinygo --version

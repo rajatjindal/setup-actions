@@ -1,0 +1,38 @@
+name: Setup wasmtime
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs: 
+  setup-wasmtime-windows:
+    runs-on: "windows-latest"
+    steps:
+      - name: setup wasmtime
+        uses: rajatjindal/setup-actions/wasmtime@main
+        with:
+          version: v0.36.0
+      - name: check version
+        run: |
+          wasmtime --version
+
+  setup-wasmtime-ubuntu:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: setup wasmtime
+        uses: rajatjindal/setup-actions/wasmtime@main
+        with:
+          version: v0.36.0
+      - name: check version
+        run: wasmtime --version
+
+  setup-wasmtime-macos:
+    runs-on: "macos-latest"
+    steps:
+      - name: setup wasmtime
+        uses: rajatjindal/setup-actions/wasmtime@main
+        with:
+          version: v0.36.0
+      - name: check version
+        run: wasmtime --version
