@@ -6,6 +6,24 @@ The `rajatjindal/setup-actions` provide setting up multiple tools. Currently it 
 - deislabs/bindle
 - deislabs/hippo
 
+## Actions
+
+:heavy_check_mark: [rajatjindal/setup-actions/spin](spin)
+
+Read more [here](spin)
+
+<br/>
+
+
+:heavy_check_mark: [rajatjindal/setup-actions/bindle](bindle)
+
+Read more [here](bindle)
+
+<br/>
+
+:heavy_check_mark: [rajatjindal/setup-actions/hippo](hippo)
+
+Read more [here](hippo)
 
 ## Author Information
 
